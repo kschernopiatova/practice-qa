@@ -1,9 +1,10 @@
 package com.solvd.practiceqa.web.pages.ios;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.practiceqa.web.components.ios.IosHeader;
+import com.solvd.practiceqa.web.components.ios.IosProductItem;
 import com.solvd.practiceqa.web.pages.SearchPageBase;
 import com.solvd.practiceqa.web.service.TestDataService;
 import org.openqa.selenium.WebDriver;
@@ -33,9 +34,12 @@ public class IosSearchPage extends SearchPageBase {
     @FindBy(xpath = "//p[contains(@class,'product-card') and contains(@class,'title')]")
     private List<ExtendedWebElement> productTitles;
 
+    @FindBy(xpath = "//div[contains(@class,'grid-item')]")
+    private List<IosProductItem> productItems;
+
     public IosSearchPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL(R.CONFIG.get("base_url") + "/women-new_arrivals");
+        setPageAbsoluteURL(Configuration.getEnvArg("base_url") + "/women-new_arrivals");
     }
 
     @Override
@@ -80,5 +84,14 @@ public class IosSearchPage extends SearchPageBase {
     public IosSearchPage searchInput(String text) {
         header.inputSearchText(text);
         return this;
+    }
+
+    @Override
+    public IosProductPage clickProductByTitle(String title) {
+        productItems.stream()
+                .filter(productItem -> productItem.getTitleText().contains(title))
+                .findFirst()
+                .get().clickProduct();
+        return new IosProductPage(getDriver());
     }
 }

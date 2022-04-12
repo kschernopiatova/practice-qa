@@ -1,10 +1,9 @@
 package com.solvd.practiceqa.web.pages.android;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.practiceqa.web.components.android.AndroidHeader;
-import com.solvd.practiceqa.web.pages.CartPageBase;
 import com.solvd.practiceqa.web.pages.ProductPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +30,7 @@ public class AndroidProductPage extends ProductPageBase {
 
     public AndroidProductPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL(R.CONFIG.get("base_url") + "/ultraboost-22-shoes/GX5592.html");
+        setPageAbsoluteURL(Configuration.getEnvArg("base_url") + "/ultraboost-22-shoes/GX5592.html");
     }
 
     @Override

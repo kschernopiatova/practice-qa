@@ -1,11 +1,10 @@
 package com.solvd.practiceqa.web.pages.android;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.practiceqa.web.components.android.AndroidCartProduct;
 import com.solvd.practiceqa.web.components.android.AndroidHeader;
-import com.solvd.practiceqa.web.components.desktop.CartProduct;
 import com.solvd.practiceqa.web.pages.CartPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +29,7 @@ public class AndroidCartPage extends CartPageBase {
 
     public AndroidCartPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL(R.CONFIG.get("base_url") + "/cart");
+        setPageAbsoluteURL(Configuration.getEnvArg("base_url") + "/cart");
     }
 
     @Override
